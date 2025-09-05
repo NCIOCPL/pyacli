@@ -1,0 +1,753 @@
+[
+    {
+        "id": "61729-f1dc8929-04ba-4fc8-875b-f19264dc568e",
+        "label": "Dev",
+        "name": "dev",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e"
+        },
+        "domains": [
+            "userdev.prod.acquia-sites.com",
+            "www-1-ac.example.com"
+        ],
+        "active_domain": "www-1-ac.example.com",
+        "default_domain": "userdev.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.dev@userdev.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": null,
+        "weight": 0,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-develop",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": false,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/61729-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "65485-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Int",
+        "name": "int",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userint.prod.acquia-sites.com",
+            "www-2-ac.example.com"
+        ],
+        "active_domain": "www-2-ac.example.com",
+        "default_domain": "userint.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.int@userint.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": null,
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-v2.14.0",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": false,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/65485-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "124409-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "IA ODE",
+        "name": "ode478",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode478.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode478.prod.acquia-sites.com",
+        "default_domain": "userode478.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode478@userode478.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "tags\/pipelines-build-v1.3.12",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "7.4"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/124409-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "143736-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "API Testing",
+        "name": "ode668",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode668.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode668.prod.acquia-sites.com",
+        "default_domain": "userode668.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode668@userode668.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-release__v2.16.0",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/143736-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "145447-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Update Sample Page YAML",
+        "name": "ode672",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode672.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode672.prod.acquia-sites.com",
+        "default_domain": "userode672.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode672@userode672.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4221",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/145447-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "145701-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Remove Local Packages",
+        "name": "ode673",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode673.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode673.prod.acquia-sites.com",
+        "default_domain": "userode673.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode673@userode673.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4222",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/145701-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "145711-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Automated OTP Section Headings",
+        "name": "ode674",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode674.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode674.prod.acquia-sites.com",
+        "default_domain": "userode674.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode674@userode674.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4224",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/145711-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "146097-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Enabler: Block Admin",
+        "name": "ode677",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode677.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode677.prod.acquia-sites.com",
+        "default_domain": "userode677.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode677@userode677.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4230",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/146097-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "146099-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Enable theme option NCIDS Hero",
+        "name": "ode678",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode678.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode678.prod.acquia-sites.com",
+        "default_domain": "userode678.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode678@userode678.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4232",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/146099-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "146146-f1dc8929-04ba-4fc8-875b-f19264dc568e",
+        "label": "ACLI Creation",
+        "name": "ode679",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userode679.prod.acquia-sites.com"
+        ],
+        "active_domain": "userode679.prod.acquia-sites.com",
+        "default_domain": "userode679.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.ode679@userode679.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": "1x",
+        "weight": 99,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-develop",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": true,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/146146-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    },
+    {
+        "id": "61730-f1dc8929-04ba-4fc8-875b-f19264dc568e ",
+        "label": "Test",
+        "name": "test",
+        "application": {
+            "name": "My Organization",
+            "uuid": "f1dc8929-04ba-4fc8-875b-f19264dc568e "
+        },
+        "domains": [
+            "userstg.prod.acquia-sites.com",
+            "www-3-ac.example.com"
+        ],
+        "active_domain": "www-3-ac.example.com",
+        "default_domain": "userstg.prod.acquia-sites.com",
+        "image_url": null,
+        "ssh_url": "user.test@userstg.ssh.prod.acquia-sites.com",
+        "ips": [
+            "192.168.1.2"
+        ],
+        "region": "us-east-1",
+        "balancer": "balancers",
+        "platform": "cloud",
+        "status": "normal",
+        "type": "drupal",
+        "size": null,
+        "weight": 20,
+        "vcs": {
+            "type": "git",
+            "path": "gh-build-pr-4141",
+            "url": "user@svn-12345.prod.hosting.acquia.com:user.git"
+        },
+        "flags": {
+            "cde": false,
+            "cdn": false,
+            "eips": false,
+            "email": false,
+            "hsd": false,
+            "livedev": false,
+            "migration": false,
+            "multicert": true,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": false,
+            "cloud_actions": false
+        },
+        "configuration": {
+            "operating_system": "xenial",
+            "php": {
+                "apcu": 32,
+                "interned_strings_buffer": null,
+                "max_execution_time": null,
+                "max_input_vars": null,
+                "max_post_size": null,
+                "memory_limit": 256,
+                "memcached_limit": null,
+                "opcache": 96,
+                "version": "8.1"
+            }
+        },
+        "artifact": null,
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/61730-f1dc8929-04ba-4fc8-875b-f19264dc568e "
+            }
+        }
+    }
+]
