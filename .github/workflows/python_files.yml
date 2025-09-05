@@ -1,0 +1,32 @@
+name: Lint and Test Python
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - '**.py'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install -e ./
+
+    - name: Lint python code
+      run: |
+        make lint
+
+    - name: Run unit tests
+      run: |
+        make test
