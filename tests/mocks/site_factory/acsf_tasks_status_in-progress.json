@@ -1,0 +1,18 @@
+{
+  "wip_task": {
+    "id": "901",
+    "parent": "0",
+    "name": "Cache clear: 271",
+    "group_name": "CacheClear",
+    "status": "4",
+    "status_string": "In Progress",
+    "added": "1704835395",
+    "started": "1704835401",
+    "completed": "0",
+    "paused": "0",
+    "error_message": "",
+    "nid": "271",
+    "uid": "0"
+  },
+  "time": "2024-01-09T21:23:38+00:00"
+}

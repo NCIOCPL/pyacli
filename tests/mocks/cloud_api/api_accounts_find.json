@@ -1,0 +1,53 @@
+{
+    "id": 1660576,
+    "uuid": "5dc470ad-49db-423b-a189-dd748c3cf526",
+    "name": "user@nih.gov",
+    "first_name": "User",
+    "last_name": "Name",
+    "last_login_at": "2024-01-29T00:24:54+00:00",
+    "created_at": "2022-03-11T15:14:07+00:00",
+    "mail": "user@nih.gov",
+    "phone": {
+        "office": "+5555555555",
+        "tfa": "5555555555"
+    },
+    "job_title": null,
+    "job_function": "IT Architect or IT Operations",
+    "company": "NCI",
+    "country": "United States",
+    "state": "District of Columbia",
+    "timezone": "UTC",
+    "picture_url": "https:\/\/accounts.acquia.com\/images\/users\/5dc470ad-49db-423b-a189-dd748c3cf526\/style\/avatar",
+    "features": [],
+    "flags": {
+        "active": true,
+        "tfa": true,
+        "support": false
+    },
+    "metadata": {
+        "applications": {
+            "recent": [],
+            "starred": []
+        }
+    },
+    "_links": {
+        "self": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account"
+        },
+        "feature-flags": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account\/feature-flags"
+        },
+        "invites": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account\/invites"
+        },
+        "messages": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account\/messages"
+        },
+        "ssh-keys": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account\/ssh-keys"
+        },
+        "tokens": {
+            "href": "https:\/\/cloud.acquia.com\/api\/account\/tokens"
+        }
+    }
+}

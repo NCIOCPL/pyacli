@@ -1,0 +1,11 @@
+{
+    "message": "Caches are being cleared.",
+    "_links": {
+        "self": {
+            "href": "https:\/\/cloud.acquia.com\/api\/environments\/146223-0cb9857b-8f32-480d-8cee-f9b70dab9030\/actions\/clear-caches"
+        },
+        "notification": {
+            "href": "https:\/\/cloud.acquia.com\/api\/notifications\/789fef82-c62e-40ef-98b5-cc3a226a4793"
+        }
+    }
+}

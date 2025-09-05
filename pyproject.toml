@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyacli"
+version = "1.0.0"
+dependencies = []
+requires-python = "~=3.10"
+authors = [
+  {name = "James Frank"}
+]
+maintainers = [
+  {name = "James Frank"}
+]
+description = "Very small python wrapper for Acquia acli interface to enable waiting and a few other utility commands."
+readme = "README.md"
+keywords = ["acli", "acquia", "acsf"]
+[project.urls]
+Documentation = "https://github.com/NCIOCPL/pyacli/wiki"
+Repository = "https://github.com/NCIOCPL/pyacli/"
+"Bug Tracker" = "https://github.com/NCIOCPL/pyacli/issues"

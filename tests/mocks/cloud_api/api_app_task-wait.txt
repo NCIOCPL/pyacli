@@ -1,0 +1,11 @@
+Acquia CLI 2.22.0 is available. Run acli self-update to update.
+    ✔ Waiting for task 69b4a1fd-44b9-4573-9203-be659c5790b2 to complete
+
+                                                                                                                        
+ [OK] The task with notification uuid 69b4a1fd-44b9-4573-9203-be659c5790b2 completed                                    
+                                                                                                                        
+
+Progress: 100
+Completed: Thu Jan 25 11:28:44 UTC 2024
+Task type: Environment added
+Duration: 342 seconds

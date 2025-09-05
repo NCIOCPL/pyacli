@@ -1,0 +1,13 @@
+[FORMAT]
+max-line-length=240
+
+[DESIGN]
+max-locals=25
+max-statements=100
+max-args=7
+
+[MAIN]
+max-branches=20
+
+[SIMILARITIES]
+min-similarity-lines=10 # some functions take 5 lines to call with black formatting
