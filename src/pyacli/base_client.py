@@ -20,6 +20,14 @@ class BaseAcliClient(ABC):
 
         :Keyword Arguments: A list of environment variables needed for authentication as key/value pairs. These will be passed to acli directly.
         """
+
+        # Get the ACLI executable path
+        self._acli_executable = shutil.which("acli")
+        if self._acli_executable is None:
+            raise RuntimeError(
+                "The 'acli' command was not found in your PATH. Please install the Acquia CLI and ensure it is available in your PATH."
+            )
+
         # Set the necessary ACLI environment variables for execution
         self._acli_env = os.environ.copy()
         for param, value in auth_params.items():
@@ -58,8 +66,7 @@ class BaseAcliClient(ABC):
         task_ids = {}
         for command in commands:
             # Get our acli executable
-            acli = shutil.which("acli")
-            command.insert(0, acli)
+            command.insert(0, self._acli_executable)
 
             str_command = " ".join(str(item) for item in command)
 

@@ -19,10 +19,16 @@ class TestCloudAPI(unittest.TestCase):
     """
 
     @patch("subprocess.Popen")
-    def setUp(self, mock_popen):
+    @patch("shutil.which")
+    def setUp(self, mock_which, mock_popen):
         """
-        Set up authentication for all our tests
+        Set up the mock environment for all tests
         """
+
+        # Patch shutil.which to always find acli
+        mock_which.return_value = "/usr/local/bin/acli"
+
+        # Set up authentication for all our tests
         self.cwd = os.path.dirname(os.path.realpath(__file__))
         with open(
             os.path.join(self.cwd, "mocks/cloud_api/api_accounts_find.json"), "rb"
@@ -63,19 +69,38 @@ class TestCloudAPI(unittest.TestCase):
             self.cloud_api._acli_env["ACLI_SECRET"], self.auth["ACLI_SECRET"]
         )
 
-    def test_init_failure(self):
+    @patch("shutil.which")
+    def test_init_failure(self, mock_which):
         """
         Test that calling a API with incorrect credentials causes failure.
         """
+        # This test creates a client instance separate from the one in setUp(),
+        # so we need to patch which() again.
+        mock_which.return_value = "/usr/local/bin/acli"
         bad_auth = {
             "ACLI_KEY": "bad",
             "ACLI_SECRET": "bad",
         }
         with self.assertRaises(RuntimeError) as e:
             cloud_api.CloudAPI(**bad_auth)
-        self.assertTrue(
+        self.assertEqual(
             str(e.exception),
             "Authentication credentials do not seem to be valid. Please check them.",
+        )
+
+    @patch("shutil.which")
+    def test_init_without_acli(self, mock_which):
+        """
+        Test that calling an API without acli installed causes failure.
+        """
+        # setUp() makes it look like acli is installed, but for this test we want
+        # it to not be installed.
+        mock_which.return_value = None
+        with self.assertRaises(RuntimeError) as e:
+            cloud_api.CloudAPI(**self.auth)
+        self.assertEqual(
+            str(e.exception),
+            "The 'acli' command was not found in your PATH. Please install the Acquia CLI and ensure it is available in your PATH.",
         )
 
     #########################################
