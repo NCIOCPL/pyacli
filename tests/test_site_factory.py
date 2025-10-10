@@ -20,10 +20,16 @@ class TestSiteFactory(unittest.TestCase):
     """
 
     @patch("subprocess.Popen")
-    def setUp(self, mock_popen):
+    @patch("shutil.which")
+    def setUp(self, mock_which, mock_popen):
         """
-        Set up ACSF authentication for all our tests
+        Set up the mock ACSF environment for all tests
         """
+
+        # Patch shutil.which to always find acli
+        mock_which.return_value = "/usr/local/bin/acli"
+
+        # Set up ACSF authentication for all our tests
         self.cwd = os.path.dirname(os.path.realpath(__file__))
         with open(
             os.path.join(self.cwd, "mocks/site_factory/acsf_service-status_get.json"),
@@ -70,10 +76,14 @@ class TestSiteFactory(unittest.TestCase):
         )
         self.assertEqual(self.site_factory._acli_env["ACSF_KEY"], self.auth["ACSF_KEY"])
 
-    def test_init_failure(self):
+    @patch("shutil.which")
+    def test_init_failure(self, mock_which):
         """
         Test that calling a site factory with incorrect credentials causes failure.
         """
+        # This test creates a client instance separate from the one in setUp(),
+        # so we need to patch which() again.
+        mock_which.return_value = "/usr/local/bin/acli"
         bad_auth = {
             "ACSF_FACTORY_URI": "bad",
             "ACSF_USERNAME": "bad",
@@ -81,9 +91,24 @@ class TestSiteFactory(unittest.TestCase):
         }
         with self.assertRaises(RuntimeError) as e:
             site_factory.SiteFactory(**bad_auth)
-        self.assertTrue(
+        self.assertEqual(
             str(e.exception),
             "Authentication credentials do not seem to be valid. Please check them.",
+        )
+
+    @patch("shutil.which")
+    def test_init_without_acli(self, mock_which):
+        """
+        Test that calling an API without acli installed causes failure.
+        """
+        # setUp() makes it look like acli is installed, but for this test we want
+        # it to not be installed.
+        mock_which.return_value = None
+        with self.assertRaises(RuntimeError) as e:
+            site_factory.SiteFactory(**self.auth)
+        self.assertEqual(
+            str(e.exception),
+            "The 'acli' command was not found in your PATH. Please install the Acquia CLI and ensure it is available in your PATH.",
         )
 
     #########################################
