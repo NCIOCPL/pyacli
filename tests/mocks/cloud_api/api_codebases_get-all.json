@@ -1,0 +1,39 @@
+[
+    {
+        "_links": {
+            "applications": {
+                "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662\/applications"
+            },
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/codebases"
+            },
+            "subscription": {
+                "href": "https:\/\/cloud.acquia.com\/api\/subscriptions\/6d4b8409-4092-40a1-b6a7-f8de4dbe7329"
+            }
+        },
+        "_embedded": {
+            "subscription": {
+                "_links": {
+                    "self": {
+                        "href": "https:\/\/cloud.acquia.com\/api\/subscriptions\/6d4b8409-4092-40a1-b6a7-f8de4dbe7329"
+                    }
+                },
+                "id": "6d4b8409-4092-40a1-b6a7-f8de4dbe7329"
+            }
+        },
+        "id": "13d225e3-70cd-4430-9866-e08c8ae02662",
+        "label": "examplemeo",
+        "region": "us-east-1",
+        "vcs_url": "ssh:\/\/us-east-1.vcs.acquia.io\/13d225e3-70cd-4430-9866-e08c8ae02662",
+        "repository_id": "f9ad8def-ad2d-4d0e-a3a7-3d859d23330f",
+        "created_at": "2025-09-12T17:00:56+00:00",
+        "updated_at": "2025-09-12T17:00:56+00:00",
+        "description": "",
+        "flags": {
+            "active": true,
+            "is_meo": true
+        },
+        "hash": "la9c387",
+        "applications_total": 0
+    }
+]

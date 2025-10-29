@@ -1,0 +1,38 @@
+[
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/sites\/332406e6-89c5-4155-8a09-ca64097550d6"
+            }
+        },
+        "id": "332406e6-89c5-4155-8a09-ca64097550d6",
+        "name": "site1",
+        "label": "site1",
+        "description": "Site 1",
+        "codebase_id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/sites\/1b70caa3-c4f9-40df-848f-e76d4c6a31d7"
+            }
+        },
+        "id": "1b70caa3-c4f9-40df-848f-e76d4c6a31d7",
+        "name": "site2",
+        "label": "site2",
+        "description": "Site 2",
+        "codebase_id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/sites\/cf25e3b0-8221-4e07-940f-f79816d45687"
+            }
+        },
+        "id": "cf25e3b0-8221-4e07-940f-f79816d45687",
+        "name": "site3",
+        "label": "site3",
+        "description": "Site 3",
+        "codebase_id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+    }
+]
