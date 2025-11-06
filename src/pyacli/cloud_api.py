@@ -65,6 +65,12 @@ class CloudAPI(BaseAcliClient):
     def wait(self, task_id, **options):
         self.run(["app:task-wait", task_id], verbose=False, wait=False)
 
+    #####
+    # Below are helper functions to make interacting with Acquia easier.
+    # Most commands can just be done via the end code but these are common enough
+    # that it is helpful to make them generally available.
+    #####
+
     def get_application(self, application_name: str):
         """
         Returns application ID for the provided application name.
@@ -86,25 +92,64 @@ class CloudAPI(BaseAcliClient):
         )
         return app["uuid"]
 
-    def get_environment(self, app_id: str, environment_name: str):
+    def get_codebase(self, codebase_name: str):
+        """
+        Returns codebase ID for the provided codebase name.
+
+        :param codebase_name: The machine name for the codebase
+        :type codebase_name: string
+
+        :return: A codebase ID
+        :rtype: string
+        """
+        codebases = self.run(["api:codebases:get-all"], verbose=False, wait=False)[0]
+        codebase = next(
+            (
+                codebase
+                for codebase in codebases
+                if codebase.get("label") == codebase_name
+            ),
+            None,
+        )
+        if codebase is None:
+            raise ValueError("No codebase found for that codebase name.")
+        return codebase["id"]
+
+    def get_environment(
+        self, container_id: str, environment_name: str, meo: bool = False
+    ):
         """
         Returns environment ID for the provided environment name (ODE label).
 
-        :param app_id: The ACE application to search for the environment within
-        :type app_id: string
+        :param container_id: The ACE application or MEO codebase to search for the environment within
+        :type container_id: string
 
         :param environment_name: The environment (ODE) label to return
         :type environment_name: string
 
-        :return: An environment ID
-        :rtype: string
+        :param meo: Whether this search should be for a MEO codebase (true) or ACE application
+        :type meo: bool
+
+        :return: An environment object
+        :rtype: dict
         """
-        environments = self.run(
-            ["api:applications:environment-list", app_id], verbose=False, wait=False
-        )[0]
+        if not meo:
+            environments = self.run(
+                ["api:applications:environment-list", container_id],
+                verbose=False,
+                wait=False,
+            )[0]
+        else:
+            environments = self.run(
+                ["api:codebases:environments-list", container_id],
+                verbose=False,
+                wait=False,
+            )[0]
         env = next(
             (env for env in environments if env.get("label") == environment_name), None
         )
+        if env is None:
+            raise ValueError("No environment found. Double check the provided name.")
 
         return env
 
@@ -137,3 +182,93 @@ class CloudAPI(BaseAcliClient):
             filtered_servers = servers
 
         return filtered_servers
+
+    # Acquia MEO specific helper functions.
+
+    def _filter_sites(self, sites_list: dict, site_names: tuple):
+        """
+        A helper to the helper because get_meo_sites and get_meo_sites_installed
+        use nearly identical logic.
+
+        :param sites_list: A JSON object returned by Acquia API with list of sites
+        :type sites_list: dict
+
+        :param site_names: Variable positional arguments representing MEO site names as strings.
+        :type site_names: string
+
+        :return: A list of site names and their corresponding IDs
+        :rtype: dict
+        """
+        sites = {site.get("name"): site.get("id") for site in sites_list}
+        if len(site_names) > 0:
+            sites = {
+                site_name: site_id
+                for site_name, site_id in sites.items()
+                if site_name in site_names
+            }
+
+            missing_sites = [name for name in site_names if name not in sites]
+            if missing_sites:
+                raise ValueError(f"Site(s) not found: {', '.join(missing_sites)}")
+
+        return sites
+
+    def get_meo_sites(self, codebase_id: str, *site_names: str):
+        """
+        Returns site IDs for the provided site names. Omitting site_names returns all sites.
+
+        This returns the site IDs from the codebase itself, whether or not they have been installed
+        on an environment in the codebase. This is needed in order to get the ID for a site
+        _to install it_ on an environment.
+
+        :param codebase_id: The codebase ID for the site instances
+        :type codebase_id: string
+
+        :param site_names: Variable positional arguments representing MEO site names as strings.
+        :type site_names: string
+
+        :return: A list of site names and their corresponding IDs
+        :rtype: dict
+        """
+        # Hardcoding limit at 100 sites until that is a problem.
+        sites_list = self.run(
+            ["api:codebases:sites-list", "--limit", "100", codebase_id],
+            wait=False,
+            verbose=False,
+        )[0]
+        sites = self._filter_sites(sites_list, site_names)
+
+        return sites
+
+    def get_meo_sites_installed(
+        self, codebase_id: str, environment_name: str, *site_names: str
+    ):
+        """
+        Returns site IDs and environment ID for the provided site names. Omitting site_names returns all sites.
+
+        This returns the site IDs for sites only if already installed to the given environment.
+
+        :param codebase_id: The codebase ID for the site instances
+        :type codebase_id: string
+
+        :param environment_name: The environment (tier) the site instances are in
+        :type environment_name: string
+
+        :param site_names: Variable positional arguments representing MEO site names as strings.
+        :type site_names: string
+
+        :return: A list of site names and their corresponding IDs, and the environment ID
+        :rtype: dict, str
+        """
+        environment = self.get_environment(codebase_id, environment_name, True)
+
+        sites_list = self.run(
+            ["api:environments:sites-list", environment["id"]],
+            wait=False,
+            verbose=False,
+        )[0]
+        sites = self._filter_sites(sites_list, site_names)
+
+        # Because many site-instance commands also need the environment ID we return it here so
+        # you can get away with only running a single command.
+        return sites, environment["id"]

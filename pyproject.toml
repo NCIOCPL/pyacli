@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyacli"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = []
 requires-python = "~=3.10"
 authors = [
@@ -20,3 +20,8 @@ keywords = ["acli", "acquia", "acsf"]
 Documentation = "https://github.com/NCIOCPL/pyacli/wiki"
 Repository = "https://github.com/NCIOCPL/pyacli/"
 "Bug Tracker" = "https://github.com/NCIOCPL/pyacli/issues"
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+]

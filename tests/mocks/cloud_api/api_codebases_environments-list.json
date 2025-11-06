@@ -1,0 +1,161 @@
+[
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/3f3de37f-56ad-4574-bb53-0ab7c1135fce"
+            },
+            "codebase": {
+                "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "_embedded": {
+            "codebase": {
+                "_links": {
+                    "self": {
+                        "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+                    }
+                },
+                "id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "id": "3f3de37f-56ad-4574-bb53-0ab7c1135fce",
+        "name": "examplemeodev",
+        "label": "Dev",
+        "description": "",
+        "status": "normal",
+        "reference": "master",
+        "flags": {
+            "cde": false,
+            "follower": false,
+            "livedev": false,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "proxy": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": true,
+            "multicert": true,
+            "platform_email": false,
+            "cloud_actions": false,
+            "private-network-id": false
+        },
+        "properties": {
+            "operating_system": "focal",
+            "version": "8.3",
+            "memory_limit": "400M",
+            "opcache": "256",
+            "apcu": "32M",
+            "interned_strings_buffer": "32",
+            "memcached_limit": "64"
+        },
+        "code_switch_status": "IDLE",
+        "ssh_url": "examplemeo.dev@examplemeodev.ssh.prod.acquia-sites.com"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/b700df4a-ca0d-4372-9f5d-2960c5745930"
+            },
+            "codebase": {
+                "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "_embedded": {
+            "codebase": {
+                "_links": {
+                    "self": {
+                        "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+                    }
+                },
+                "id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "id": "b700df4a-ca0d-4372-9f5d-2960c5745930",
+        "name": "examplemeoprod",
+        "label": "Prod",
+        "description": "",
+        "status": "normal",
+        "reference": "ai-develop-origin",
+        "flags": {
+            "cde": false,
+            "follower": false,
+            "livedev": false,
+            "multi_region": false,
+            "production": true,
+            "production_mode": false,
+            "proxy": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": true,
+            "multicert": true,
+            "platform_email": false,
+            "cloud_actions": false,
+            "private-network-id": false
+        },
+        "properties": {
+            "operating_system": "focal",
+            "version": "8.3",
+            "memory_limit": "400M",
+            "opcache": "256",
+            "apcu": "32M",
+            "interned_strings_buffer": "32",
+            "memcached_limit": "64"
+        },
+        "code_switch_status": "IDLE",
+        "ssh_url": "examplemeo.prod@examplemeoprod.ssh.prod.acquia-sites.com"
+    },
+    {
+        "_links": {
+            "self": {
+                "href": "https:\/\/cloud.acquia.com\/api\/environments\/3fb6d93b-c7ad-493d-ad89-2c17e15ae99c"
+            },
+            "codebase": {
+                "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "_embedded": {
+            "codebase": {
+                "_links": {
+                    "self": {
+                        "href": "https:\/\/cloud.acquia.com\/api\/codebases\/13d225e3-70cd-4430-9866-e08c8ae02662"
+                    }
+                },
+                "id": "13d225e3-70cd-4430-9866-e08c8ae02662"
+            }
+        },
+        "id": "3fb6d93b-c7ad-493d-ad89-2c17e15ae99c",
+        "name": "examplemeostage",
+        "label": "Stage",
+        "description": "",
+        "status": "normal",
+        "reference": "master",
+        "flags": {
+            "cde": false,
+            "follower": false,
+            "livedev": false,
+            "multi_region": false,
+            "production": false,
+            "production_mode": false,
+            "proxy": false,
+            "remote_admin": false,
+            "varnish": true,
+            "varnish_over_ssl": true,
+            "multicert": true,
+            "platform_email": false,
+            "cloud_actions": false,
+            "private-network-id": false
+        },
+        "properties": {
+            "operating_system": "focal",
+            "version": "8.3",
+            "memory_limit": "400M",
+            "opcache": "256",
+            "apcu": "32M",
+            "interned_strings_buffer": "32",
+            "memcached_limit": "64"
+        },
+        "code_switch_status": "IDLE",
+        "ssh_url": "examplemeo.stage@examplemeostage.ssh.prod.acquia-sites.com"
+    }
+]
