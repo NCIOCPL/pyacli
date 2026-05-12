@@ -154,9 +154,9 @@ class TestCloudAPIRun(CloudAPITestBase):
             str(e.exception).endswith("did not return any tasks to monitor.")
         )
 
-    def test_run_acsf_failure(self):
+    def test_run_retired_acsf_command_failure(self):
         """
-        Test for failure if we try to run an ACSF command
+        Test for failure if we try to run a retired acsf command
         """
         with self.assertRaises(ValueError) as e:
             self.cloud_api.run(
@@ -165,7 +165,7 @@ class TestCloudAPIRun(CloudAPITestBase):
 
         self.assertEqual(
             str(e.exception),
-            "This class should only be used with non-ACSF commands for acli",
+            "Retired acsf commands are no longer supported",
         )
 
     @patch("subprocess.Popen")

@@ -31,38 +31,5 @@
         "_embedded": {
             "tags": []
         }
-    },
-    {
-        "id": 845361,
-        "uuid": "cdac1c0f-e08b-44f8-9485-7951567bd5d8",
-        "name": "My Organization - ACSF Sites",
-        "hosting": {
-            "type": "acsf",
-            "id": "enterprise-g1:"
-        },
-        "subscription": {
-            "uuid": "f382a425-9fa2-4094-a672-6739cc90c533",
-            "name": "My Organization - ACSF Sites"
-        },
-        "organization": {
-            "uuid": "e4c1aad9-fe3b-4316-816b-6bb4fd6b42bc",
-            "name": "My Organization"
-        },
-        "flags": {
-            "remote_admin": false
-        },
-        "status": "normal",
-        "type": "drupal",
-        "_links": {
-            "self": {
-                "href": "https:\/\/cloud.acquia.com\/api\/applications\/fd4854fd-fdb4-426f-b32a-2e2e46465d15"
-            },
-            "parent": {
-                "href": "https:\/\/cloud.acquia.com\/api\/applications"
-            }
-        },
-        "_embedded": {
-            "tags": []
-        }
     }
 ]

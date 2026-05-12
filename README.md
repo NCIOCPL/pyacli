@@ -8,7 +8,7 @@ Install the [Acquia CLI](https://docs.acquia.com/acquia-cloud-platform/add-ons/a
 pip install git+https://github.com/NCIOCPL/pyacli.git
 ```
 
-At this point you can `from pyacli import site_factory` or the other modules in it.
+At this point you can `from pyacli import cloud_api`.
 
 ## Local Development 
 
@@ -20,80 +20,58 @@ pip install  -e .
 
 ## Use
 
-## Site Factory
+### Cloud API
 
-### Authentication
+#### Authentication
 
-To authenticate you create a new instance of the `SiteFactory` class and pass in:
+To authenticate, create a new instance of the `CloudAPI` class and pass in:
 
-- Site Factory URI
-- Username
-- Key
+- ACLI key
+- ACLI secret
 
-You can have multiple Site Factory instances active at once and `pyacli` will ensure each one has the correct authentication before making calls.
+`pyacli` passes these values to `acli` through the environment before making calls.
 
 ```python
-from site_factory import SiteFactory
+import os
+from pyacli import cloud_api
 
-dev_auth = {
-    "ACSF_FACTORY_URI": os.environ["ACSF_DEV_FACTORY"],
-    "ACSF_USERNAME": os.environ["ACSF_DEV_USERNAME"],
-    "ACSF_KEY": os.environ["ACSF_DEV_KEY"],
+auth = {
+    "ACLI_KEY": os.environ["ACLI_KEY"],
+    "ACLI_SECRET": os.environ["ACLI_SECRET"],
 }
-dev_acli = site_factory.SiteFactory(**dev_auth)
-
-test_auth = {
-    "ACSF_FACTORY_URI": os.environ["ACSF_TEST_FACTORY"],
-    "ACSF_USERNAME": os.environ["ACSF_TEST_USERNAME"],
-    "ACSF_KEY": os.environ["ACSF_TEST_KEY"],
-}
-test_acli = site_factory.SiteFactory(**test_auth)
+acli = cloud_api.CloudAPI(**auth)
 ```
 
 #### Run
 
-`run` is the workhorse method of `SiteFactory` and is designed to execute an `acli acsf:*` command for you. 
+`run` executes one or more `acli` commands. If `wait` is enabled, it extracts the notification task from the command output and waits for completion with `app:task-wait`.
 
 Parameters:
 
-- `**args`: One or more ACSF commands with arguments as a tuple (e.g. `["acsf:sites:clear-cache", "1"]`)
+- `*commands`: One or more commands with arguments as a tuple (for example, `["api:environments:clear-caches", "environment-id"]`)
 - `**kwargs` of options:
   - `verbose`: Whether or not to print out information as it executes
-  - `wait`: If `True` retrieves the task ID of the generated ACSF task and polls its status until completed
-  - `interval`: If waiting, the interval to poll on
-  - `max_checks`: If waiting, the max number of attempts at polling the status
+  - `wait`: If `True`, wait for generated tasks to complete
+  - `max_retries`: Number of times to retry failed commands or tasks
 
 ```python
-
-# Run commands against multiple factories
-dev_acli.run(
-    ["acsf:sites:find"],
-    wait=False,
-    verbose=False
-    )
-
-test_acli.run(
-    ["acsf:sites:find"], 
-    wait=False, 
-    verbose=False
-    )
+# Run a command and return immediately.
+applications = acli.run(["api:applications:list"], wait=False, verbose=False)
 
 # Run one or more commands and wait for the tasks they create to complete
-dev_acli.run(
-    ["acsf:sites:clear-cache", "123"], 
-    ["acsf:sites:clear-cache", "456"],
-    interval=5, max_checks=10
-    )
+acli.run(
+    ["api:environments:clear-caches", "environment-id"],
+    max_retries=2,
+)
 ```
 
-#### Get Sites
+#### Helpers
 
-`get_sites()` is a shortcut method that will execute `acli acsf:sites:find` and return just the site names and IDs. If you pass it any site names as strings then it will filter the list for you.
+The Cloud API client includes helpers for common lookups:
 
-```python
-# Get a list of all sites with IDs
-print(dev_acli.get_sites())
-
-# Filter to specific sites
-print(dev_acli.get_sites("mysite1", "mysite2"))
-```
+- `get_application(application_name)`
+- `get_codebase(codebase_name)`
+- `get_environment(container_id, environment_name, meo=False)`
+- `get_servers(app_id, environment_name, role=None)`
+- `get_meo_sites(codebase_id, *site_names)`
+- `get_meo_sites_installed(codebase_id, environment_name, *site_names)`

@@ -7,8 +7,9 @@ lint:
 	-python -m black . --check
 	pylint . --recursive=y
 
+# Ensure the local src-layout package wins over any installed pyacli copy.
 test:
-	coverage run -m unittest discover -s ./
+	PYTHONPATH=src coverage run -m unittest discover -s ./
 	coverage report
 
 all:

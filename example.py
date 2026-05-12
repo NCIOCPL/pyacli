@@ -1,45 +1,32 @@
 #!/usr/bin/env python
 
 """
-Example script file showing basic pyacli usage.
+Example script file showing basic pyacli Cloud API usage.
 """
 
 import os
-from pyacli import site_factory
+from pyacli import cloud_api
 
-# Set up your site factories, passing in
-#   - Site factory URI
-#   - Username
-#   - Key
-dev_auth = {
-    "ACSF_FACTORY_URI": os.environ["ACSF_DEV_FACTORY"],
-    "ACSF_USERNAME": os.environ["ACSF_DEV_USERNAME"],
-    "ACSF_KEY": os.environ["ACSF_DEV_KEY"],
+# Set up a Cloud API client, passing in an ACLI key and secret.
+auth = {
+    "ACLI_KEY": os.environ["ACLI_KEY"],
+    "ACLI_SECRET": os.environ["ACLI_SECRET"],
 }
-dev_acli = site_factory.SiteFactory(**dev_auth)
+acli = cloud_api.CloudAPI(**auth)
 
-test_auth = {
-    "ACSF_FACTORY_URI": os.environ["ACSF_TEST_FACTORY"],
-    "ACSF_USERNAME": os.environ["ACSF_TEST_USERNAME"],
-    "ACSF_KEY": os.environ["ACSF_TEST_KEY"],
-}
-test_acli = site_factory.SiteFactory(**test_auth)
+# Run commands directly.
+print(acli.run(["api:applications:list"], wait=False, verbose=False))
 
-# Get a list of all sites with IDs
-print(dev_acli.get_sites())
-# Or filter to specific sites
-print(dev_acli.get_sites("mysite1", "mysite2"))
+application_name = os.environ.get("ACQUIA_APPLICATION_NAME")
+environment_name = os.environ.get("ACQUIA_ENVIRONMENT_NAME")
 
-# Run commands directly against multiple factories
-print(dev_acli.run(["acsf:sites:find"], wait=False, verbose=False))
-print(test_acli.run(["acsf:sites:find"], wait=False, verbose=False))
+application_id = acli.get_application(application_name)
+environment = acli.get_environment(application_id, environment_name)
 
-# Or run one or more commands and wait for the tasks they create to complete
+# Run a task-producing command and wait for it to complete.
 print(
-    dev_acli.run(
-        ["acsf:sites:clear-cache", "123"],
-        ["acsf:sites:clear-cache", "456"],
-        interval=5,
-        max_attempts=10,
+    acli.run(
+        ["api:environments:clear-caches", environment["id"]],
+        max_retries=2,
     )
 )

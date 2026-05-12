@@ -56,11 +56,9 @@ class CloudAPI(BaseAcliClient):
         self.run(["api:accounts:find"], verbose=False, wait=False)
 
     def _validate_commands(self, commands):
-        # Ensure we're only executing ACE commands, because ACSF commands can't use app:task-wait
+        # Retired acsf commands use a different task model and are no longer supported.
         if any(command[0].startswith("acsf:") for command in commands):
-            raise ValueError(
-                "This class should only be used with non-ACSF commands for acli"
-            )
+            raise ValueError("Retired acsf commands are no longer supported")
 
     def wait(self, task_id, **options):
         self.run(["app:task-wait", task_id], verbose=False, wait=False)
