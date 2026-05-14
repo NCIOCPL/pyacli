@@ -1,8 +1,0 @@
-{
-  "id": 271,
-  "time": "2024-01-09T21:23:16+00:00",
-  "task_ids": {
-    "drupal_cache_clear": 901,
-    "varnish_cache_clear": 901
-  }
-}

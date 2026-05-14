@@ -15,7 +15,7 @@ maintainers = [
 ]
 description = "Very small python wrapper for Acquia acli interface to enable waiting and a few other utility commands."
 readme = "README.md"
-keywords = ["acli", "acquia", "acsf"]
+keywords = ["acli", "acquia"]
 [project.urls]
 Documentation = "https://github.com/NCIOCPL/pyacli/wiki"
 Repository = "https://github.com/NCIOCPL/pyacli/"
