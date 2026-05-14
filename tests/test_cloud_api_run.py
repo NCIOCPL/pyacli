@@ -185,3 +185,36 @@ class TestCloudAPIRun(CloudAPITestBase):
         print(e.exception)
         self.assertTrue(str(e.exception).startswith("Error running command"))
         self.assertTrue(str(e.exception).endswith(f"{command}': {error}"))
+
+    @patch("subprocess.Popen")
+    def test_run_command_retryable_app_error_success(self, mock_popen):
+        """
+        Test retrying when ACLI crashes with a transient syntax error.
+        """
+        command = ["api:site-instances:find", "site-id", "env-id"]
+        retryable_error = b"""
+Something unexpected happened:
+
+Syntax error
+
+api:site-instances:find <siteId> <environmentId>
+"""
+        mock_process_failed = self.create_mock_process(1, b"", retryable_error)
+        with open(
+            os.path.join(
+                self.cwd, "mocks/cloud_api/api_environments_clear-caches.json"
+            ),
+            "rb",
+        ) as f:
+            file = f.read()
+            mock_process_success = self.create_mock_process(0, file)
+            expected_result = [json.loads(file)]
+
+        mock_popen.side_effect = [
+            mock_process_failed,
+            mock_process_success,
+        ]
+
+        result = self.cloud_api.run(command, verbose=False, wait=False, max_retries=1)
+
+        self.assertEqual(result, expected_result)

@@ -65,17 +65,15 @@ class BaseAcliClient(ABC):
         command_results = []
         task_ids = {}
         for command in commands:
-            # Get our acli executable
-            command.insert(0, self._acli_executable)
-
-            str_command = " ".join(str(item) for item in command)
+            executable_command = [self._acli_executable, *command]
+            str_command = " ".join(str(item) for item in executable_command)
 
             if verbose:
                 print(f"Running ACLI command '{str_command}'")
 
             # Execute the actual acli commands using subprocess
             with subprocess.Popen(
-                command,
+                executable_command,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 env=self._acli_env,
@@ -87,6 +85,14 @@ class BaseAcliClient(ABC):
             if return_code != 0:
                 if error == "":
                     error = output.decode("utf-8")
+                if max_retries > 0 and self._should_retry_command_error(error):
+                    print(
+                        f"ACLI app error detected, will retry ({max_retries - 1} retries remaining after this one)"
+                    )
+                    rerun_options = options.copy()
+                    rerun_options["max_retries"] = max_retries - 1
+                    command_results.extend(self.run(list(command), **rerun_options))
+                    continue
                 raise RuntimeError(f"Error running command '{str_command}': {error}")
 
             try:
@@ -115,7 +121,7 @@ class BaseAcliClient(ABC):
                         "The command did not return any tasks to monitor."
                     ) from e
                 for task_id in extracted_ids:
-                    task_ids[task_id] = command
+                    task_ids[task_id] = list(command)
 
             if verbose:
                 print(json.dumps(result, indent=4))
@@ -128,7 +134,6 @@ class BaseAcliClient(ABC):
                     self.wait(task_id, **options)
                 except RuntimeError as e:
                     if max_retries > 0:
-                        command.pop(0)
                         print(str(e))
                         print(
                             f"Task failed, will retry ({max_retries - 1} retries remaining after this one)"
@@ -150,6 +155,17 @@ class BaseAcliClient(ABC):
             )
 
         return command_results
+
+    def _should_retry_command_error(self, error: str) -> bool:
+        """
+        Return whether an ACLI command error looks like a transient app failure.
+
+        ACLI occasionally throws a syntax error when an upstream response is
+        malformed. Those failures are unrelated to the requested command itself
+        and are safe to retry.
+        """
+        normalized_error = error.lower()
+        return "syntax error" in normalized_error
 
     @abstractmethod
     def _extract_task_id(self, result):
